@@ -1,10 +1,13 @@
 const request = require('supertest');
-
 const { Product } = require('../models/index')
-
 const app = require('../app');
+const { initializeProduct, clearProductsDatabase } = require('./helpers/product-helpers');
+
+afterAll(clearProductsDatabase)
 
 describe('PRODUCT', function () {
+
+
     test('Dapat menampilkan Array of Object Seluruh Product', function (done) {
         request(app)
             .get('/products')
@@ -76,6 +79,39 @@ describe('PRODUCT', function () {
             })
 
     });
+
+    describe('Delete product', function () {
+        beforeEach(() => {
+            return initializeProduct
+        })
+        test('Dapat mengupdate data product tertentu', async function () {
+            const updatedProduct = await request(app)
+                .patch(`/products/${newProduct.body.id}`)
+                .send({
+                    name: "Shampo",
+                    image_url: "http:shampo.com",
+                    price: 10000,
+                    stock: 10
+                });
+            expect(updatedProduct.statusCode).toBe(200);
+            expect(updatedProduct.body).toEqual({ message: "Update Success" })
+        });
+        await console.log(initializeProduct)
+        test('Dapat menghapus product tertentu', async function () {
+            const removedProduct = await request(app)
+                .delete(`/products/${newProduct.body.id}`);
+
+            expect(removedProduct.body).toEqual({ message: "Deleted" });
+            expect(removedProduct.statusCode).toBe(200);
+        });
+
+        
+
+
+    })
+
+
+
     test('Dapat menghapus product tertentu', async function () {
         const newProduct = await request(app)
             .post("/products")
