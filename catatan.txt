@@ -1,0 +1,351 @@
+Server With Testing 
+
+The mantra of TDD :
+RED : Write a test that fails
+GREEN : Make the code work
+REFACTOR : Eliminate redundancy
+
+1. Untuk membuat server , kita menggunakan JEST : Javascript testing Framework
+2. Dont forget 'npm init -y then' . Instalasi pada saat development : 'npm install --save-dev jest'
+3. Buat folder tests
+4. Buat file . Ex: factorial-of.test.js
+5. Buat test case
+    Cara tulis nya, 
+    test('', function(){
+        // expectations
+    }) ;
+
+    Ket: Parameter pertama: Title,
+    Parameter kedua: callback function
+
+    Short Cysle : Setiap endpoint selesaikan sampai green baru ganti ke fitur lain.
+
+    Contoh pengerjaan yang benar:
+    - Register (Red, Green, Refactor) => Selesai ? Next : Replay
+    - Login (Red, Green, Refactor) => Selesai ? Next : Replay
+
+    Contoh pengerjaan yang salah:
+    - Register (Red)
+    - Login (Red)
+    - Register (Green)
+    - Login (Green)
+    - Register (Refactor)
+    - Login (Refactor)
+
+6. Karena Jest tidak bisa melkukan http request, Mka gunakan 'supertest' sebagai fitur tambahan untuk http request
+7. Install supertest pada saat development : 'npm install --save-dev supertest'
+
+Cara penggunaan nya: 
+Red: 
+- Require supertest di setiap test case yang membutuhkan http request
+- Membuat endpoint 
+
+    Contoh : 
+
+    /tests/get-products.test.js
+
+    const request = require('supertest')
+
+    const app = require('../app)
+
+    test('GET /products should send an array', function(done) {
+        request(app)
+            .get('/products')
+            .end(function (err, res) {
+                if (err) throw err;
+                
+                expect(res.status).toBe(200);
+                expect(res.body).toBeInstanceOf(Array);
+
+                done();
+            })
+    });
+
+    Kemudian Coba jalan kan : npx jest
+    ===> Eror app is not defined. Karena kita menggunakan tdd, Buat testcase dulu kemudian baru membuat code nya
+
+Green :
+- Siapkan app nya dan instal sesaui keperluan
+- npm install --save express sequelize pg
+- npm install --save-dev sequelize-cli
+- npx sequelize init
+
+    Padaa saat test gunakan environtment test.
+    Masukkan data untuk membuat database.
+    "test": {
+        "username": "postgres",
+        "password": "1234",
+        "database": "database_test_e-commerce",
+        "host": "127.0.0.1",
+        "dialect": "postgres"
+    }
+
+    Cara ngasih taunya , gunakan sequelizerc. buat file: '.sequelizerc'
+
+    /.sequelizerc
+
+    module.exports = {
+        'env': 'test
+    };
+
+    Buat Model :
+    - npx sequelize model:generate --name Product --attributes name:string,image_url:string,price:integer,stock:integer
+    - npx sequelize model:generate --name User --attributes email:string,password:string,role:string
+    Buat Database : 
+    - npx sequlize db:create
+    Migrate db
+    - npx sequelize db:migrate
+
+
+    =================== DB SELESAI
+
+    Membuat validate dan Hooks
+
+    Hooks kayanya ga perlu karena tidak ada fitur register, dan register nya hannya di seed
+
+    Validate : Udah
+
+    ================================
+
+    Membuat helpers 
+    - install bcryptjs : npm install bcryptjs
+
+    ================================
+
+    Membuat Seed : 'npx sequelize seed:generate --name seed-data-admin'
+    Seed User: 'npx sequelize db:seed:all'
+
+    module.exports = {
+        up: async (queryInterface, Sequelize) => {
+            await queryInterface.bulkInsert('Users', [{
+                email: 'admin@mail.com',
+                password: '$2a$05$kcz709yX.KGXUmIoiN80Juya/QPnhxN/U7u6tpOgIhPrtVK69KIPG',
+                role: 'admin',
+                createdAt: new Date(),
+                updatedAt: new Date()
+            }], {});
+        },
+
+        down: async (queryInterface, Sequelize) => {
+            await queryInterface.bulkDelete('People', null, {});
+        }
+    };
+
+    ==============================
+
+    Buat app.js
+
+    app.js
+
+    // Definisi App
+    const express = require('express');
+    const app = express();
+
+    // Definisi model
+    const { Product, User } = require('./models/index');
+
+
+    //Body Parser
+    app.use(express.urlencoded({ extended: false }));
+    //Json
+    app.use(express.json());
+
+    // Routing
+    app.get('/products', async function (req, res, next) {
+        try {
+            const products = await products.findAll();
+            res.json(products);
+        } catch (err) {
+            next(err)
+        }
+    });
+
+    // Error Handler
+    app.use(function (err, req, res, next) {
+        console.log(err);
+        res.status(500).json({
+            errors: [{ message: 'Shit happened' }]
+        });
+    });
+
+    // Export app
+    module.exports = app;
+
+    ==========================================
+
+    Cara ngasih tau Exprees kalu ini testing 
+    ---> NODE_ENV=test npx jest
+
+    Supaya lebih mudah, tambahin ke script di package json
+    "scripts": {
+        "test": "NODE_ENV=test npx jest"
+    }
+
+    Sehingga kita bisa ngerun dengan
+    ---> npm test
+
+    Simple Sekali
+
+    ==========================================
+
+    Membuat script untuk ngerun biasa
+
+    Buat folder bin
+    Buat file http
+
+    /bin/http
+
+    const app = require('../app.js')
+    const PORT = process.env.PORT || 3000;
+    const NODE_ENV = process.env.NODE_ENV || 'test';
+
+    app.listen(PORT, () => {
+        console.log(`app listen at localhost: ${PORT}`)
+        console.table({PORT, NODE_ENV})
+    });
+
+    Install Nodemon jangan lupa
+
+    Cara ngerun : npx nodemon bin/http
+
+    Supaya gampang , Tambahkan juga script nya :
+    "scripts": {
+        "dev": "NODE_ENV=test npx nodemon bin/http", ======> New Added
+        "test": "NODE_ENV=test npx jest"
+    },
+
+    Cara ngerun script yang tidak dikenal oleh NPM:
+    ---> npm run dev
+    ---> NODE_ENV=test node bin/http
+
+
+
+    ==========================================
+
+    Cara melihat Error : 
+    nyalain server
+    run di postman
+    console.log di terminal
+
+    ==========================================
+
+    if (err.name === "SequelizeValidationError") {
+        const errors = err.errors.map((error) => ({ message: error.message }));
+
+        res.status(400).json({
+            errors
+        })
+    }
+
+    ==========================================
+
+    Bagi per test case
+
+    describe("POST /books", function () {
+        test("should send newly created product", function(done){
+            request(app)
+                .post("/products")
+                .send({ name: "Shampo", image_url: "http:shampo.com", price: 10000, stock: 10})
+                .end(function(req,res){
+                    if(err) throw err
+
+                    expect(res.status).toBe(201);
+                    expect(res.body).toBeInstanceOf(Object);
+                    expect(res.body).toHaveProperty("id");
+                    expect(res.body).toHaveProperty("name", "Shampo");
+                    expect(res.body).toHaveProperty("image_url", "http:shampo.com");
+                    expect(res.body).toHaveProperty("price", 10000);
+                    expect(res.body).toHaveProperty("stock", 10);
+
+                    done()
+
+                })
+        })
+
+        test("should send validation error", function(done){
+            request(app)
+                .post("/products")
+                .send({ name: "", image_url: "", price: , stock: })
+                .end(function(req,res){
+                    if(err) throw err
+
+                    expect(res.status).toBe(400);
+                    expect(res.body).toBeInstanceOf(Object);
+                    expect(res.body).toHaveProperty("errors");
+
+                    expect(res.body.errors).toBeInstanceOf(Array)
+                    expect(res.body.errors).toBeContainEqual({message: 'Product name is required'})
+                    expect(res.body.errors).toBeContainEqual({message: 'Product Image Url is required'})
+                    expect(res.body.errors).toBeContainEqual({message: 'Product price is required'})
+                    expect(res.body.errors).toBeContainEqual({message: 'Product stock is required'})
+
+                    done()
+
+                })
+        })
+    })
+
+    ==========================================
+
+    Setelah di satuin per test case nya, kita bisa melihat seluruh isinya dengan Cara
+    Ganti script test nya dengan menambah : 
+    ---> '--verbose'
+
+    hasil: 
+    "scripts": {
+        "dev": "npx nodemon bin/http",
+        "test": "NODE_ENV=test npx jest --verbose" ===> new addded('verbose')
+    },
+
+    ==========================================
+
+
+    Generate Coverage :
+
+    Ganti script test nya dengan menambah : 
+    ---> '--coverage'
+
+    hasil: 
+    "scripts": {
+        "dev": "npx nodemon bin/http",
+        "test": "NODE_ENV=test npx jest --verbose --coverage" ===> new addded('coverage')
+    },
+
+    ==========================================
+
+    Searching : OPTIONS, IGNORE
+
+    ==========================================
+
+    Teknik testing ke db : CLean Up
+
+    Cara nya  :
+    --->    afterAll(function() {
+
+            })
+
+    tests/helpers/clear-products
+
+        const { Product } = require('../../models/');
+
+        async function clearProducts() {
+            if (process.env.NODE_ENV === 'test'){
+                await Product.destroy({truncate: true});
+            }
+        }
+
+        module.exports = clearProducts
+
+    cara panggilnya :
+    ---> afterAll(clearProducts)
+        **Jangan lupa require
+
+    ==========================================
+
+
+
+
+
+    
+    
+
