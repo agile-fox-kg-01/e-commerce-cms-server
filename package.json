@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node app.js",
     "dev": "npx nodemon bin/http",
     "test": "set NODE_ENV=test&&npx jest --runInBand --detectOpenHandles --verbose --forceExit"
   },
