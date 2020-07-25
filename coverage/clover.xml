@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1595667823781" clover="3.2.0">
-  <project timestamp="1595667823781" name="All files">
-    <metrics statements="133" coveredstatements="118" conditionals="27" coveredconditionals="17" methods="20" coveredmethods="17" elements="180" coveredelements="152" complexity="0" loc="133" ncloc="133" packages="7" files="13" classes="13"/>
+<coverage generated="1595716191997" clover="3.2.0">
+  <project timestamp="1595716191997" name="All files">
+    <metrics statements="167" coveredstatements="106" conditionals="34" coveredconditionals="14" methods="23" coveredmethods="13" elements="224" coveredelements="133" complexity="0" loc="167" ncloc="167" packages="7" files="14" classes="14"/>
     <package name="e-commerce-cms-server">
       <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="app.js" path="/home/ichlasul/Documents/Hactiv8/Phase2/e-commerce-cms/e-commerce-cms-server/app.js">
@@ -20,53 +20,61 @@
       </file>
     </package>
     <package name="e-commerce-cms-server.controllers">
-      <metrics statements="41" coveredstatements="38" conditionals="10" coveredconditionals="7" methods="5" coveredmethods="5"/>
+      <metrics statements="49" coveredstatements="19" conditionals="10" coveredconditionals="4" methods="6" coveredmethods="1"/>
       <file name="controllerProduct.js" path="/home/ichlasul/Documents/Hactiv8/Phase2/e-commerce-cms/e-commerce-cms-server/controllers/controllerProduct.js">
-        <metrics statements="25" coveredstatements="23" conditionals="4" coveredconditionals="3" methods="4" coveredmethods="4"/>
+        <metrics statements="31" coveredstatements="2" conditionals="4" coveredconditionals="0" methods="5" coveredmethods="0"/>
         <line num="1" count="2" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
-        <line num="15" count="3" type="stmt"/>
-        <line num="17" count="3" type="stmt"/>
-        <line num="18" count="3" type="stmt"/>
-        <line num="20" count="1" type="stmt"/>
-        <line num="22" count="2" type="stmt"/>
-        <line num="27" count="2" type="stmt"/>
-        <line num="28" count="2" type="stmt"/>
-        <line num="29" count="2" type="cond" truecount="2" falsecount="0"/>
-        <line num="30" count="1" type="stmt"/>
-        <line num="32" count="1" type="stmt"/>
-        <line num="37" count="1" type="stmt"/>
-        <line num="43" count="1" type="stmt"/>
-        <line num="48" count="3" type="stmt"/>
-        <line num="49" count="3" type="stmt"/>
-        <line num="50" count="3" type="cond" truecount="1" falsecount="1"/>
-        <line num="51" count="0" type="stmt"/>
-        <line num="53" count="3" type="stmt"/>
-        <line num="58" count="1" type="stmt"/>
-        <line num="63" count="2" type="stmt"/>
-        <line num="69" count="2" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="39" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="60" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="68" count="0" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="79" count="2" type="stmt"/>
       </file>
       <file name="controllerUser.js" path="/home/ichlasul/Documents/Hactiv8/Phase2/e-commerce-cms/e-commerce-cms-server/controllers/controllerUser.js">
-        <metrics statements="16" coveredstatements="15" conditionals="6" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <metrics statements="18" coveredstatements="17" conditionals="6" coveredconditionals="4" methods="1" coveredmethods="1"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
         <line num="3" count="2" type="stmt"/>
         <line num="7" count="2" type="stmt"/>
         <line num="8" count="2" type="stmt"/>
         <line num="9" count="2" type="stmt"/>
-        <line num="14" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="10" count="2" type="stmt"/>
         <line num="15" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="17" count="2" type="cond" truecount="2" falsecount="0"/>
-        <line num="18" count="1" type="stmt"/>
-        <line num="20" count="1" type="stmt"/>
-        <line num="23" count="1" type="stmt"/>
+        <line num="16" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
         <line num="24" count="1" type="stmt"/>
-        <line num="29" count="1" type="stmt"/>
-        <line num="34" count="2" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="36" count="2" type="stmt"/>
       </file>
     </package>
     <package name="e-commerce-cms-server.helpers">
@@ -91,24 +99,51 @@
       </file>
     </package>
     <package name="e-commerce-cms-server.midlewares">
-      <metrics statements="15" coveredstatements="10" conditionals="6" coveredconditionals="3" methods="2" coveredmethods="2"/>
-      <file name="errorHandler.js" path="/home/ichlasul/Documents/Hactiv8/Phase2/e-commerce-cms/e-commerce-cms-server/midlewares/errorHandler.js">
-        <metrics statements="15" coveredstatements="10" conditionals="6" coveredconditionals="3" methods="2" coveredmethods="2"/>
+      <metrics statements="39" coveredstatements="15" conditionals="13" coveredconditionals="3" methods="4" coveredmethods="2"/>
+      <file name="auth.js" path="/home/ichlasul/Documents/Hactiv8/Phase2/e-commerce-cms/e-commerce-cms-server/midlewares/auth.js">
+        <metrics statements="22" coveredstatements="8" conditionals="6" coveredconditionals="1" methods="2" coveredmethods="1"/>
         <line num="1" count="2" type="stmt"/>
-        <line num="2" count="6" type="cond" truecount="3" falsecount="3"/>
-        <line num="4" count="12" type="stmt"/>
-        <line num="7" count="4" type="stmt"/>
-        <line num="10" count="4" type="stmt"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="52" count="2" type="stmt"/>
+      </file>
+      <file name="errorHandler.js" path="/home/ichlasul/Documents/Hactiv8/Phase2/e-commerce-cms/e-commerce-cms-server/midlewares/errorHandler.js">
+        <metrics statements="17" coveredstatements="7" conditionals="7" coveredconditionals="2" methods="2" coveredmethods="1"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="2" count="2" type="cond" truecount="2" falsecount="5"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
-        <line num="24" count="1" type="stmt"/>
-        <line num="27" count="1" type="stmt"/>
-        <line num="29" count="1" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
         <line num="33" count="1" type="stmt"/>
         <line num="35" count="0" type="stmt"/>
-        <line num="40" count="2" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="46" count="2" type="stmt"/>
       </file>
     </package>
     <package name="e-commerce-cms-server.models">
@@ -152,7 +187,7 @@
       </file>
     </package>
     <package name="e-commerce-cms-server.routes">
-      <metrics statements="22" coveredstatements="21" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <metrics statements="24" coveredstatements="23" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
       <file name="index.js" path="/home/ichlasul/Documents/Hactiv8/Phase2/e-commerce-cms/e-commerce-cms-server/routes/index.js">
         <metrics statements="9" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="2" type="stmt"/>
@@ -166,15 +201,17 @@
         <line num="14" count="2" type="stmt"/>
       </file>
       <file name="productRouter.js" path="/home/ichlasul/Documents/Hactiv8/Phase2/e-commerce-cms/e-commerce-cms-server/routes/productRouter.js">
-        <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
         <line num="4" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
         <line num="10" count="2" type="stmt"/>
-        <line num="11" count="2" type="stmt"/>
         <line num="12" count="2" type="stmt"/>
-        <line num="13" count="2" type="stmt"/>
-        <line num="15" count="2" type="stmt"/>
       </file>
       <file name="userRouter.js" path="/home/ichlasul/Documents/Hactiv8/Phase2/e-commerce-cms/e-commerce-cms-server/routes/userRouter.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>

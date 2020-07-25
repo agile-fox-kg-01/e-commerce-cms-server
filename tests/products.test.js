@@ -5,22 +5,23 @@ const { clearProductsDatabase } = require('./helpers/product-helpers');
 let productId = 0
 
 afterAll(clearProductsDatabase)
+test.only('Dapat menampilkan Array of Object Seluruh Product', function (done) {
+  request(app)
+    .get('/products', { headers: { token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTU5NTcwMzA0M30.iGK4VmFugbsOkcS6_iQmTLeEjaYjvDanACdQHH1nGnA' }})
+    .end(function (err, res) {
+      if (err) throw err;
+
+      expect(res.status).toBe(200);
+      expect(res.body).toBeInstanceOf(Array);
+
+      done();
+    })
+});
 
 describe('TEST PRODUCT', function () {
 
 
-    test('Dapat menampilkan Array of Object Seluruh Product', function (done) {
-        request(app)
-            .get('/products')
-            .end(function (err, res) {
-                if (err) throw err;
-
-                expect(res.status).toBe(200);
-                expect(res.body).toBeInstanceOf(Array);
-
-                done();
-            })
-    });
+    
     test('Dapat menampilkan Object Product Baru', function (done) {
         request(app)
             .post('/products')
