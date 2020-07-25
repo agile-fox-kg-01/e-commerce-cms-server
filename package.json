@@ -1,10 +1,11 @@
 {
   "name": "e-commerce-cms-server",
   "version": "1.0.0",
-  "description": "aarsandi-ecomm",
+  "description": "aarsandi-ecoom-cms-server",
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
+    "dev": "set NODE_ENV=test&&npx nodemon bin/http",
     "test": "set NODE_ENV=test&&npx jest --verbose"
   },
   "repository": {
