@@ -5,7 +5,15 @@ class ControllerProduct {
   static async getProducts(req, res, next) {
     try {
       const product = await Product.findAll()
-      res.json(product)
+      res.status(200).json(product)
+    } catch (err) {
+      next(err)
+    }
+  }
+  static async getProduct(req, res, next) {
+    try {
+      const product = await Product.findByPk(req.params.id)
+      res.status(200).json(product)
     } catch (err) {
       next(err)
     }
@@ -13,6 +21,7 @@ class ControllerProduct {
 
   static async postProducts(req, res, next) {
     const { name, image_url, price, stock } = req.body
+    console.log(req.body)
 
     try {
       const newProduct = await Product.create({ name, image_url, price, stock })
@@ -24,6 +33,7 @@ class ControllerProduct {
   }
 
   static async deleteProducts(req, res, next) {
+    console.log(req.params.id)
     try {
       const product = await Product.findByPk(req.params.id)
       if (!product) {

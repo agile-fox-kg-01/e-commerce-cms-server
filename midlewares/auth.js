@@ -2,7 +2,7 @@ const { User } = require('../models/index')
 const { verifyToken } = require('../helpers/jwt')
 
 async function authentication(req, res, next) {
-  const token = req.headers.token
+  // const token = req.headers.token
   if (!token) {
     throw { name: 'Not Authorized' }
   } else {
