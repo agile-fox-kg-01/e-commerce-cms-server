@@ -32,7 +32,6 @@ class UserController {
             })
 
             if (currentUser) {
-                console.log(password, currentUser.password)
                 if (comparePassword(password, currentUser.password)) {
                     let payload = {
                         email: currentUser.email
@@ -47,7 +46,6 @@ class UserController {
                 throw { name: 'Bad Request' }
             }
         } catch (error) {
-            console.log(error)
             next(error)
         }
     }
