@@ -1,0 +1,71 @@
+Membuat aplikasi Realtime dengan socket.io
+
+Listen beberapa event
+io.on('connect', function(socket) {
+  console.log('New client connected');
+});
+
+
+Cara konekin dengan client vue-cli
+Step 1: Install 
+---> npm install --save socket.io-client
+
+Step 2: Buat event listen di server
+io.on('connect', function(socket) {
+  console.log('New client connected');
+}); 
+// Akan di konsole.log ketikaada yang masuk ke client componen
+
+Step 3: Buat vent listener juga di client
+---> import io from 'socket.io-client'
+Untuk established conection maka pasang mounted, 
+ketika componen udah berhasil dipasang di browser,
+established conection ke socket io server
+Untuk simpen socket bisa pake satte
+
+atau mounted () {
+  this.socket = io.connect('http://localhost:3000');
+
+  // terima event 
+  this.socket.on('init', function () {
+    console.log('Init invoked')
+  })
+  //init bakal jalan ketika emit event yang namanya init
+
+
+}
+
+Kasih di template 
+     
+  
+Cara kirim Event ke client
+io.on('connect', function(socket) {
+  console.log('New client connected');
+
+  // socket === connected client
+  socket.emit('init', { content: 'Welcome to chat app' });
+}); 
+
+Yang di client bakal ke triger karena server ngirim event yang namnya init
+
+Cara ambil datanya bisa dari callback functionnya
+atau mounted () {
+  this.socket = io.connect('http://localhost:3000');
+
+  // terima event 
+  this.socket.on('init', function (payload) {
+    console.log(payload)
+  })
+  //init bakal jalan ketika emit event yang namanya init
+
+
+}
+
+=======================================================
+Di klient
+Kalau mau kirim event pake emit
+kalau mau terima event pake on
+
+emit = triger event
+on = event listener
+

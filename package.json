@@ -4,7 +4,7 @@
   "description": "**Link Deploy :**",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=test node bin/http",
+    "dev": "NODE_ENV=development nodemon bin/http",
     "test": "NODE_ENV=test npx jest --verbose --coverage"
   },
   "repository": {
@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "nodemon": "^2.0.4",

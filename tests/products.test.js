@@ -1,11 +1,12 @@
 const request = require('supertest');
 const { Product } = require('../models/index')
 const app = require('../app');
-const { initializeProduct, clearProductsDatabase } = require('./helpers/product-helpers');
+const { clearProductsDatabase } = require('./helpers/product-helpers');
+let productId = 0
 
 afterAll(clearProductsDatabase)
 
-describe('PRODUCT', function () {
+describe('TEST PRODUCT', function () {
 
 
     test('Dapat menampilkan Array of Object Seluruh Product', function (done) {
@@ -79,132 +80,81 @@ describe('PRODUCT', function () {
             })
 
     });
-
-    describe('Delete product', function () {
-        beforeEach(() => {
-            return initializeProduct
+    describe('Update and delete product', function () {
+        beforeEach(async () => {
+            const product = await Product.create({
+                name: "Shampo",
+                image_url: "http:shampo.com",
+                price: 10000,
+                stock: 10
+            })
+            productId = product.id
         })
         test('Dapat mengupdate data product tertentu', async function () {
             const updatedProduct = await request(app)
-                .patch(`/products/${newProduct.body.id}`)
+                .patch(`/products/${productId}`)
                 .send({
-                    name: "Shampo",
-                    image_url: "http:shampo.com",
-                    price: 10000,
-                    stock: 10
+                    name: "Shampo Sunshilk",
+                    image_url: "http:shampo.comm",
+                    price: 100000,
+                    stock: 100
                 });
             expect(updatedProduct.statusCode).toBe(200);
             expect(updatedProduct.body).toEqual({ message: "Update Success" })
         });
-        await console.log(initializeProduct)
+    
+        test('Dapat menampilkan eror ketika databaru is Empty ', async function () {
+            const updatedProduct = await request(app)
+                .patch(`/products/${productId}`)
+                .send({
+                    name: "",
+                    image_url: "",
+                    price: "",
+                    stock: ""
+                });
+            expect(updatedProduct.statusCode).toBe(400);
+            expect(updatedProduct.body).toHaveProperty("errors");
+
+            expect(updatedProduct.body.errors).toBeInstanceOf(Array)
+            expect(updatedProduct.body.errors).toContainEqual({ message: 'Product name is required' })
+            expect(updatedProduct.body.errors).toContainEqual({ message: 'Product Image Url is required' })
+            expect(updatedProduct.body.errors).toContainEqual({ message: 'Product price is required' })
+            expect(updatedProduct.body.errors).toContainEqual({ message: 'Product stock is required' })
+        });
+        test('Dapat menampilkan eror ketika databaru price dan stock adalah negative ', async function () {
+            const updatedProduct = await request(app)
+                .patch(`/products/${productId}`)
+                .send({
+                    name: "Sabun",
+                    image_url: "http:shampo.comm",
+                    price: -3,
+                    stock: -4
+                });
+            expect(updatedProduct.statusCode).toBe(400);
+            expect(updatedProduct.body).toHaveProperty("errors");
+
+            expect(updatedProduct.body.errors).toBeInstanceOf(Array)
+            expect(updatedProduct.body.errors).toContainEqual({ message: 'Validation min on price failed' })
+            expect(updatedProduct.body.errors).toContainEqual({ message: 'Validation min on stock failed' })
+        });
         test('Dapat menghapus product tertentu', async function () {
             const removedProduct = await request(app)
-                .delete(`/products/${newProduct.body.id}`);
+                .delete(`/products/${productId}`);
 
             expect(removedProduct.body).toEqual({ message: "Deleted" });
             expect(removedProduct.statusCode).toBe(200);
         });
-
-        
-
-
     })
 
-
-
-    test('Dapat menghapus product tertentu', async function () {
-        const newProduct = await request(app)
-            .post("/products")
-            .send({
-                name: "Shampo",
-                image_url: "http:shampo.com",
-                price: 10000,
-                stock: 10
-            });
-        const removedProduct = await request(app)
-            .delete(`/products/${newProduct.body.id}`);
-        
-        expect(removedProduct.body).toEqual({ message: "Deleted" });
-        expect(removedProduct.statusCode).toBe(200);
-    });
-    test('Dapat menampilkan pesan error ketika menghapus product yang tidak ada', async function () {
-        const removedProduct = await request(app)
-            .delete(`/products/0`);
-
-        expect(removedProduct.body).toEqual({ message: "Cant update/delete, because Product not found" });
-        expect(removedProduct.statusCode).toBe(404);
-    });
-    test('Dapat mengupdate data product tertentu', async function () {
-        const newProduct = await request(app)
-            .post("/products")
-            .send({
-                name: "Shampoo",
-                image_url: "http:shampo.comm",
-                price: 100002,
-                stock: 103
-            });
-        const updatedProduct = await request(app)
-            .patch(`/products/${newProduct.body.id}`)
-            .send({
-                name: "Shampo",
-                image_url: "http:shampo.com",
-                price: 10000,
-                stock: 10
-            });
-        expect(updatedProduct.statusCode).toBe(200);
-        expect(updatedProduct.body).toEqual({ message: "Update Success"})
-    });
-    test('Dapat menampilkan eror ketika databaru is Empty ', async function () {
-        const newProduct = await request(app)
-            .post("/products")
-            .send({
-                name: "Shampoo",
-                image_url: "http:shampo.comm",
-                price: 100002,
-                stock: 103
-            });
-        const updatedProduct = await request(app)
-            .patch(`/products/${newProduct.body.id}`)
-            .send({
-                name: "",
-                image_url: "",
-                price: "",
-                stock: ""
-            });
-        expect(updatedProduct.statusCode).toBe(400);
-        expect(updatedProduct.body).toHaveProperty("errors");
-
-        expect(updatedProduct.body.errors).toBeInstanceOf(Array)
-        expect(updatedProduct.body.errors).toContainEqual({ message: 'Product name is required' })
-        expect(updatedProduct.body.errors).toContainEqual({ message: 'Product Image Url is required' })
-        expect(updatedProduct.body.errors).toContainEqual({ message: 'Product price is required' })
-        expect(updatedProduct.body.errors).toContainEqual({ message: 'Product stock is required' })
-    });
-    test('Dapat menampilkan eror ketika databaru price dan stock adalah negative ', async function () {
-        const newProduct = await request(app)
-            .post("/products")
-            .send({
-                name: "Shampoo",
-                image_url: "http:shampo.comm",
-                price: 100002,
-                stock: 103
-            });
-        const updatedProduct = await request(app)
-            .patch(`/products/${newProduct.body.id}`)
-            .send({
-                name: "Sabun",
-                image_url: "http:shampo.comm",
-                price: -3,
-                stock: -4
-            });
-        expect(updatedProduct.statusCode).toBe(400);
-        expect(updatedProduct.body).toHaveProperty("errors");
-
-        expect(updatedProduct.body.errors).toBeInstanceOf(Array)
-        expect(updatedProduct.body.errors).toContainEqual({ message: 'Validation min on price failed' })
-        expect(updatedProduct.body.errors).toContainEqual({ message: 'Validation min on stock failed' })
-    });
-
-
+    describe('Delete Product empty', function() {
+        test('Dapat menampilkan pesan error ketika menghapus product yang tidak ada', async function () {
+            const removedProduct = await request(app)
+                .delete(`/products/${productId}`);
+    
+            expect(removedProduct.body).toEqual({ message: "Cant update/delete, because Product not found" });
+            expect(removedProduct.statusCode).toBe(404);
+        });
+    })
+    
 
 })

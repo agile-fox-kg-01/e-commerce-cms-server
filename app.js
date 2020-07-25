@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express()
+var cors = require('cors')
 
 // Login
 const { comparePassword } = require('./helpers/bcrypt')
@@ -9,6 +10,7 @@ const { Product, User } = require('./models/index');
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+app.use(cors())
 
 app.get('/products', async function(req, res, next) {
     try {
@@ -72,8 +74,9 @@ app.patch('/products/:id', async function (req, res, next) {
 })
 
 app.post('/users/login', async function (req, res, next) {
-     
+    console.log(req.body)
     const inputPassword = req.body.password
+    
     try {
         const user = await User.findOne({
             where: {
@@ -89,7 +92,8 @@ app.post('/users/login', async function (req, res, next) {
             const payload = {
                 email: user.email
             }
-            const token = signToken(payload)
+          const token = signToken(payload)
+          console.log(token)
             res.status(200).json({
                 token
             })
