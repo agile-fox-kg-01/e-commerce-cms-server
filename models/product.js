@@ -54,7 +54,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         isNumeric: {
           args: true,
-          msg: `Price should be in number format`
+          msg: `Stock should be in number format`
         },
         notEmpty: {
           args: true,

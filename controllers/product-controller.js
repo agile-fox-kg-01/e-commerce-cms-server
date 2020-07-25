@@ -7,7 +7,6 @@ class ProductController {
 
             res.status(200).json(products);
         } catch (error) {
-            console.log(error);
             next(error);
         }
     }
@@ -19,8 +18,6 @@ class ProductController {
             price: Number(req.body.price) === 0 ? '' : Number(req.body.price),
             stock: Number(req.body.stock) === 0 ? '' : req.body.stock
         }
-
-        console.log(objProduct);
 
         try {
             const newProduct = await Product.create(objProduct);
