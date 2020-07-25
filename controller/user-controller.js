@@ -27,22 +27,21 @@ class UserController {
         try {
             let currentUser = await User.findOne({
                 where: {
-                    email: email,
-                    password: password
+                    email: email
                 }
             })
 
             if (currentUser) {
-                let payload = {
-                    email: currentUser.email
+                if (comparePassword(password, currentUser.password)) {
+                    let payload = {
+                        email: currentUser.email
+                    }
+                    res.status(200).json({
+                        access_token: signToken(payload)
+                    })
+                } else {
+                    throw { name: 'Bad Request' }
                 }
-                res.status(200).json({
-                    access_token: signToken(payload)})
-                // if (comparePassword(password, currentUser.password)) {
-                //     })
-                // } else {
-                //     throw { name: 'Bad Request' }
-                // }
             } else {
                 throw { name: 'Bad Request' }
             }

@@ -47,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   User.beforeCreate((instance, options) => {
-    // instance.password = hashPassword(instance.password)
+    instance.password = hashPassword(instance.password)
     
     if (instance.role == '' || instance.role == undefined) {
       instance.role = 'user'
