@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "set NODE_ENV=test&&npx nodemon bin/http",
     "test": "set NODE_ENV=test&&npx jest --verbose"
   },
   "repository": {
