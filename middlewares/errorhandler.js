@@ -1,15 +1,15 @@
 const errorhandler = (err, req, res, next) => {
-    // console.log(err.name)
+    // console.log(err)
     if (err.name === 'SequelizeValidationError') {
         const errors = err.errors.map((error) => ({
             message: error.message
         }))
         res.status(400).json({
-            errors
+            errors: errors[0].message
         })
     } else if (err.name == 'SequelizeUniqueConstraintError') {
         return res.status(400).json({
-            errors: err.errors[0]
+            errors: err.errors[0].message
         })
     } else if (err.name == 'ValidationError') {
         return res.status(400).json({
@@ -21,7 +21,7 @@ const errorhandler = (err, req, res, next) => {
         })
     } else {
         res.status(500).json({
-            errors: { message: 'internal server' }
+            errors: 'oops something went wrong please contact developers ^^'
         })
     }    
 }

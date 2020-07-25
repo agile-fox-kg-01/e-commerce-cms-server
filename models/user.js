@@ -43,7 +43,15 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    role: DataTypes.STRING
+    role: {
+      type: DataTypes.STRING,
+      validate: {
+        isIn: {
+          args: [['admin', 'customer']],
+          msg: "Role Must be admin or customer"
+        }
+      }
+    }
   }, {
     hooks: {
       beforeCreate(user) {

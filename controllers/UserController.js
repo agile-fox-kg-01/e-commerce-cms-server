@@ -55,7 +55,7 @@ class UserController {
         }
     }
 
-    static async oauthGoogle(req, res) {
+    static async oauthGoogle(req, res, next) {
         const google_token = req.headers.google_token
         try {
             const payload = await verify(google_token)
@@ -85,7 +85,7 @@ class UserController {
                 })
             }
         } catch (err) {
-            res.status(500).json(err)
+            next(err)
         }
     }
 }
