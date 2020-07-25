@@ -8,7 +8,7 @@ describe('User', function () {
     test('Dapat login dan mendapat token', function (done){
         request(app)
             .post('/users/login')
-            .send({ email: 'admin@mail.com', password: '1234' })
+            .send({ email: 'admin@gmail.com', password: '1234' })
             .end( function(err, res) {
                 if (err) throw err
                 
@@ -22,7 +22,7 @@ describe('User', function () {
     test('Dapat menampilkan error jika email/password salah', function (done) {
         request(app)
             .post('/users/login')
-            .send({ email: 'admin@mail.com', password: '12345' })
+            .send({ email: 'admin@gmail.com', password: '12345' })
             .end(function (err, res) {
                 if (err) throw err
                 expect(res.status).toBe(400);
