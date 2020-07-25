@@ -1,0 +1,26 @@
+[
+    {
+        "name": "laptop",
+        "image_url": "https://www.notebookcheck.net/uploads/tx_nbc2/MicrosoftSurfaceLaptop3-15__1__02.JPG",
+        "price": 10000,
+        "stock": 5
+    },
+    {
+        "name": "laptop2",
+        "image_url": "https://www.notebookcheck.net/uploads/tx_nbc2/MicrosoftSurfaceLaptop3-15__1__02.JPG",
+        "price": 500000,
+        "stock": 5
+    },
+    {
+        "name": "laptop3",
+        "image_url": "https://www.notebookcheck.net/uploads/tx_nbc2/MicrosoftSurfaceLaptop3-15__1__02.JPG",
+        "price": 3849000,
+        "stock": 5
+    },
+    {
+        "name": "laptop4",
+        "image_url": "https://www.notebookcheck.net/uploads/tx_nbc2/MicrosoftSurfaceLaptop3-15__1__02.JPG",
+        "price": 2330000,
+        "stock": 5
+    }
+]
