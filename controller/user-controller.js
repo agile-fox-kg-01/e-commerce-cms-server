@@ -32,11 +32,11 @@ class UserController {
             })
 
             if (currentUser) {
+                console.log(password, currentUser.password)
                 if (comparePassword(password, currentUser.password)) {
                     let payload = {
                         email: currentUser.email
                     }
-
                     res.status(200).json({
                         access_token: signToken(payload)
                     })
@@ -47,6 +47,7 @@ class UserController {
                 throw { name: 'Bad Request' }
             }
         } catch (error) {
+            console.log(error)
             next(error)
         }
     }
