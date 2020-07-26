@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "start": "node app.js",
     "dev": "NODE_ENV=development nodemon bin/http",
     "test": "NODE_ENV=test jest --detectOpenHandles --forceExit --verbose"
   },
