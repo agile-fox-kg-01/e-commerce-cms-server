@@ -74,7 +74,7 @@ class Controller {
         name:data.name,
         price:data.price,
         stock: data.stock,
-        image_url: data.imgae_url
+        image_url: data.image_url
       },{
         where: {
           id: id

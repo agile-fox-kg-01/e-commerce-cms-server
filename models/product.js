@@ -41,7 +41,7 @@ module.exports = (sequelize, DataTypes) => {
           args: true,
           msg: 'Price is required'
         },
-        min: 0
+        min: 1
       }
     },
     stock: {
@@ -52,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
           args: true,
           msg: 'Product stock is required'
         },
-        min: 0
+        min: 1
       }
     }
   }, {
