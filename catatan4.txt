@@ -1,9 +1,0 @@
-mkdir chat-server
-npm init -y
-npm install express socket.io
-
-app/
-const  app = cara ngirim data dari server ke client
-
-di vue client npm install soket.io-client
-

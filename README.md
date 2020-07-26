@@ -1,9 +1,10 @@
 # e-commerce-cms-server
 
-**Link Deploy :**
+**All Url :**
+* **[Link Documentation With Postman : ](https://documenter.getpostman.com/view/11947207/T1DqfwF4?version=latest)**
 
-* **[Kanban_Server](https://mykanban-ichlasul.herokuapp.com/)**
-* **[Kanban_Client](https://mykanban-ichlasul.web.app/)**
+* **[E-Commerce-CMS_Server](https://mykanban-ichlasul.herokuapp.com/)**
+* **[E-Commerce-CMS_Client](https://mykanban-ichlasul.web.app/)**
 
 ## API Documentation
 
@@ -11,96 +12,13 @@ Router
 
 USER :
 POST /login
-POST /register
 
 PRODUCTS :
 POST /products
 GET /products
 GET /products/:id
 DELETE /products/:id
-PUT /products/:id
-
-**User Register**
-----
-    New user registration 
-
-* **URL**
-
-  http://localhost:3000/users/register
-
-* **Method:**
-  
-  `POST`
-
-* **Request Headers**
-
-   none
-  
-* **URL Params**
-
-   none
-
-* **Data Params**
-
-  | key | value | required |
-  | :---: | :---: | :---: |
-  | email | STRING | true |
-  | password | STRING | true |
-
-* **Success Response:**
-  
-  
-  * **Code:** 201 CREATED <br />
-    **Content:** 
-    ```json
-    {
-        "email": "ichlasulaja123@gmail.com",
-        "password": "$2R8Y4TUxLZasdfasfdasfUXG"
-    }
-    ```
- 
-* **Error Response:**
-
-    * **Code:** 400 BAD REQUEST <br />
-        **Content:** 
-        ```json
-        { "error" : "email can't be empty" }
-        ```
-
-        OR
-
-        ```json
-        { "error" : "Email already exist" }
-        ```
-
-        OR
-
-        ```json
-        { "error" : "invalid email format" }
-        ```
-
-        OR
-
-        ```json
-        { "error" : "password can't be empty" }
-        ```
-
-        OR
-
-        ```json
-        { "error" : "Password length more than 8 and less than 16" }
-        ```
-
-
-    OR
-
-    * **Code:** 500 INTERNAL SERVER ERROR <br />
-        **Content:** 
-        ```json
-        { "message" : "internal server error" }
-        ```
-
-
+PATCH /products/:id
 
 ----
 **User Login**
@@ -141,7 +59,7 @@ PUT /products/:id
  
 * **Error Response:**
 
-    * **Code:** 401 UNAUTHORIZED <br />
+    * **Code:** 400 BAD REQUEST <br />
         **Content:** 
         ```json
         { "message": "Invalid email and password" }
@@ -171,7 +89,9 @@ PUT /products/:id
 
 * **Request Headers**
 
-   none
+   | key | value | required |
+  | :---: | :---: | :---: |
+  | token | STRING| true |
   
 * **URL Params**
 
@@ -189,13 +109,13 @@ PUT /products/:id
 * **Success Response:**
   
   
-  * **Code:** 200 OK <br />
+  * **Code:** 201 CREATED <br />
     **Content:** 
     ```json
     {    
         "id": 7,
         "name": "shampo",
-        "image_url": "http://asdasdasd.com",
+        "image_url": "http://shampoo-image.com",
         "price": 10000,
         "stock": 10,
         "updatedAt": "2020-07-21T22:31:26.786Z",
@@ -244,6 +164,29 @@ PUT /products/:id
 
     OR
 
+    * **Code:** 401 UNAUTHORIZED <br />
+        **Content:** 
+        ```json
+        { "message" : "You dont have token" }
+        ```
+
+        OR 
+        
+    * **Code:** 401 UNAUTHORIZED <br />
+        **Content:** 
+        ```json
+        { "message" : "Your token is wrong" }
+        ```
+        OR 
+        
+    * **Code:** 401 UNAUTHORIZED <br />
+        **Content:** 
+        ```json
+        { "message" : "You dont have previllege" }
+        ```
+
+    OR
+
     * **Code:** 500 INTERNAL SERVER ERROR <br />
         **Content:** 
         ```json
@@ -252,9 +195,9 @@ PUT /products/:id
 
 
 ----
-**Update Product**
+**Get All Product**
 ----
-  Update Product
+  Show all Product
 
 * **URL**
 
@@ -262,11 +205,169 @@ PUT /products/:id
 
 * **Method:**
   
+  `GET`
+
+* **Request Headers**
+
+   | key | value | required |
+  | :---: | :---: | :---: |
+  | token | STRING| true |
+  
+* **URL Params**
+
+   none
+
+* **Data Params**
+
+  none
+
+* **Success Response:**
+  
+  
+  * **Code:** 200 OK <br />
+    **Content:** 
+    ```json
+    [
+      {    
+          "id": 7,
+          "name": "shampo",
+          "image_url": "http://shampoo-image.com",
+          "price": 10000,
+          "stock": 10,
+          "updatedAt": "2020-07-21T22:31:26.786Z",
+          "createdAt": "2020-07-21T22:31:26.786Z"
+      }
+    ]
+    ```
+ 
+* **Error Response:**
+
+    * **Code:** 401 UNAUTHORIZED <br />
+        **Content:** 
+        ```json
+        { "message" : "You dont have token" }
+        ```
+
+        OR 
+        
+    * **Code:** 401 UNAUTHORIZED <br />
+        **Content:** 
+        ```json
+        { "message" : "Your token is wrong" }
+        ```
+        OR 
+        
+    * **Code:** 401 UNAUTHORIZED <br />
+        **Content:** 
+        ```json
+        { "message" : "You dont have previllege" }
+        ```
+
+    OR
+
+    * **Code:** 500 INTERNAL SERVER ERROR <br />
+        **Content:** 
+        ```json
+        { "message" : "internal server error" }
+        ```
+
+----
+**Get Product**
+----
+  Show just one Product
+
+* **URL**
+
+  http://localhost:3000/products/:id
+
+* **Method:**
+  
+  `GET`
+
+* **Request Headers**
+
+  | key | value | required |
+  | :---: | :---: | :---: |
+  | token | STRING| true |
+  
+* **URL Params**
+
+  Yes
+
+* **Data Params**
+
+  | key | value | required |
+  | :---: | :---: | :---: |
+  | id  | INTEGER | true |
+
+* **Success Response:**
+  
+  
+  * **Code:** 200 OK <br />
+    **Content:** 
+    ```json
+    [
+      {    
+          "id": 7,
+          "name": "shampo",
+          "image_url": "http://shampoo-image.com",
+          "price": 10000,
+          "stock": 10,
+          "updatedAt": "2020-07-21T22:31:26.786Z",
+          "createdAt": "2020-07-21T22:31:26.786Z"
+      }
+    ]
+    ```
+ 
+* **Error Response:**
+
+    * **Code:** 401 UNAUTHORIZED <br />
+        **Content:** 
+        ```json
+        { "message" : "You dont have token" }
+        ```
+
+        OR 
+        
+    * **Code:** 401 UNAUTHORIZED <br />
+        **Content:** 
+        ```json
+        { "message" : "Your token is wrong" }
+        ```
+        OR 
+        
+    * **Code:** 401 UNAUTHORIZED <br />
+        **Content:** 
+        ```json
+        { "message" : "You dont have previllege" }
+        ```
+
+    OR
+
+    * **Code:** 500 INTERNAL SERVER ERROR <br />
+        **Content:** 
+        ```json
+        { "message" : "internal server error" }
+        ```
+
+----
+**Update Product**
+----
+  Update Product
+
+* **URL**
+
+  http://localhost:3000/products/:id
+
+* **Method:**
+  
   `PATCH`
 
 * **Request Headers**
 
-   none
+  | key | value | required |
+  | :---: | :---: | :---: |
+  | token | STRING| true |
   
 * **URL Params**
 
@@ -333,6 +434,29 @@ PUT /products/:id
 
     OR
 
+    * **Code:** 401 UNAUTHORIZED <br />
+        **Content:** 
+        ```json
+        { "message" : "You dont have token" }
+        ```
+
+        OR 
+        
+    * **Code:** 401 UNAUTHORIZED <br />
+        **Content:** 
+        ```json
+        { "message" : "Your token is wrong" }
+        ```
+        OR 
+        
+    * **Code:** 401 UNAUTHORIZED <br />
+        **Content:** 
+        ```json
+        { "message" : "You dont have previllege" }
+        ```
+
+    OR
+
     * **Code:** 500 INTERNAL SERVER ERROR <br />
         **Content:** 
         ```json
@@ -381,6 +505,29 @@ PUT /products/:id
         **Content:** 
         ```json
         { "message" : "Cant update/delete, because Product not found" }
+        ```
+
+    OR
+
+    * **Code:** 401 UNAUTHORIZED <br />
+        **Content:** 
+        ```json
+        { "message" : "You dont have token" }
+        ```
+
+        OR 
+        
+    * **Code:** 401 UNAUTHORIZED <br />
+        **Content:** 
+        ```json
+        { "message" : "Your token is wrong" }
+        ```
+        OR 
+        
+    * **Code:** 401 UNAUTHORIZED <br />
+        **Content:** 
+        ```json
+        { "message" : "You dont have previllege" }
         ```
 
     OR

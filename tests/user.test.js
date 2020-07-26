@@ -1,7 +1,5 @@
 const request = require('supertest');
 
-const { Users } = require('../models/index')
-
 const app = require('../app');
 
 describe('User', function () {

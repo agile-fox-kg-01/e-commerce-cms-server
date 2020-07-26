@@ -10,25 +10,25 @@ const errorHandler = (err, req, res, next) => {
       break;
     case 'Not Authentication':
       res.status(401).json({
-        error: 'Anda tidak memiliki token'
+        error: 'You dont have token'
       })
 
       break;
     case 'Not Authorized':
       res.status(401).json({
-        error: 'Anda bukan admin'
+        error: 'You dont have previllege'
       })
 
       break;
     case 'JsonWebTokenError':
-      res.status(400).json({
-        error: 'Token anda salah'
+      res.status(401).json({
+        error: 'Your token is wrong'
       })
 
       break;
     case 'Invalid email and password':
       res.status(400).json({
-        message: 'Invalid email and password woi'
+        message: 'Invalid email and password'
       })
       break;
     case 'Not Found':
