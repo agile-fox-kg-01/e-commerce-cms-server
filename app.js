@@ -13,7 +13,7 @@ app.use(express.json())
 app.use('/', routes)
 app.use(errorHandler)
 
-app.listen(port, () => {
-  console.log('running on port local')
-})
+// app.listen(port, () => {
+//   console.log('running on port local')
+// })
 module.exports = app;
