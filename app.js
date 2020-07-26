@@ -14,5 +14,6 @@ app.use('/', routes)
 app.use(errorHandler)
 
 app.listen(port, () => {
-  console.log(`app running on http://localhost:${port}`);
+  console.log('running on port local')
 })
+module.exports = app;
