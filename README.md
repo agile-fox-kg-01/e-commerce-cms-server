@@ -1,24 +1,23 @@
 # e-commerce-cms-server
 
 **All Url :**
-* **[Link Documentation With Postman : ](https://documenter.getpostman.com/view/11947207/T1DqfwF4?version=latest)**
+* **[Documentation With Postman](https://documenter.getpostman.com/view/11947207/T1DqfwF4?version=latest)**
 
 * **[E-Commerce-CMS_Server](https://my-ecommerse-cms.herokuapp.com/)**
 * **[E-Commerce-CMS_Client](https://mykanban-ichlasul.web.app/)**
 
 ## API Documentation
 
-Router 
+​
+List of available endpoints:
+- `POST /login`
 
-USER :
-POST /login
-
-PRODUCTS :
-POST /products
-GET /products
-GET /products/:id
-DELETE /products/:id
-PATCH /products/:id
+And routes below need authentication
+- `POST /products`
+- `GET /products`
+- `GET /products/:id`
+- `PATCH /products/:id`
+- `DELETE /products/:id`
 
 ----
 **User Login**
