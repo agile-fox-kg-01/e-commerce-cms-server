@@ -1,6 +1,5 @@
 const { User } = require('../models/index')
 const { verifyToken } = require('../helpers/jwt')
-
 async function authentication(req, res, next) {
   const token = req.headers.token
   try {
@@ -27,9 +26,6 @@ async function authentication(req, res, next) {
     })
   }
 }
-
-
-
 async function isAdmin(req, res, next) {
 
   const userRole = req.userLogin.role
