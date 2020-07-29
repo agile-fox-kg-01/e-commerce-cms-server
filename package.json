@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "test": "set NODE_ENV=test&&npx jest --verbose"
+	"dev": "npx nodemon bin/http",
+    "test": "set NODE_ENV=test&&npx jest --verbose --detectOpenHandles --runInBand --forceExit"
   },
   "repository": {
     "type": "git",

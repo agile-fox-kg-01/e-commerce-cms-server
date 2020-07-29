@@ -1,4 +1,4 @@
-const { User } = require('../models/index')
+const { User, Cart } = require('../models/index')
 const { verifyToken } = require('../helpers/jwt')
 
 async function auth(req, res, next) {
@@ -17,7 +17,7 @@ async function auth(req, res, next) {
             })
             if (!user) {
                 res.status(401).json({
-                    errors: 'login first'
+                    errors: 'please login first'
                 })
             } else {
                 req.userLogin = user
@@ -47,6 +47,27 @@ async function isAdmin(req, res, next) {
     }
 }
 
+async function isOwner(req, res, next) {
+    try {
+        const cart = await Cart.findByPk(req.params.id)
+        if (!cart) {
+            res.status(404).json({ error: 'Cart not Found' })
+        } else {
+            if (cart.UserId !== req.userLogin.id) {
+                res.status(401).json({ 
+                    error: 'Not Authorized to Access this'
+                })
+            } else {
+                next()
+            }
+        }
+    } catch (err) {
+        res.status(500).json({
+            errors: 'Internal server error'
+        })
+    }
+}
+
 module.exports = {
-    auth, isAdmin
+    auth, isAdmin, isOwner
 }

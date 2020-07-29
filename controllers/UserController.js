@@ -12,13 +12,8 @@ class UserController {
         }
         try {
             const newUser = await User.create(user)
-            const payload = {
-                email: newUser.email
-            }
-            const token = signToken(payload)
             res.status(201).json({
-                token: token,
-                email: payload.email
+                email: newUser.email
             })
         } catch (err) {
             next(err)
@@ -47,7 +42,8 @@ class UserController {
                 const token = signToken(payload)
                 res.status(200).json({ 
                     token: token,
-                    email: payload.email
+                    email: user.email,
+                    role: user.role
                 })
             }
         } catch (err) {
@@ -69,7 +65,7 @@ class UserController {
                 const newUser = {
                     email: payload.email,
                     password: process.env.DEFAULT_GOOGLEPASS,
-                    role: 'admin'
+                    role: 'customer'
                 }
                 await User.create(newUser)                
                 const token = signToken(newPayload)

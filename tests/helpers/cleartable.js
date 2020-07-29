@@ -1,8 +1,9 @@
-const { User } = require('../../models/index')
+const { sequelize } = require('../../models/index')
+const { queryInterface } = sequelize
 
 async function clearUsers() {
     if (process.env.NODE_ENV === 'test') {
-        await User.destroy({ truncate: true })
+        await queryInterface.bulkDelete('Users', {})
     }
 }
 
