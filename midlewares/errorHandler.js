@@ -8,6 +8,12 @@ const errorHandler = (err, req, res, next) => {
         errors
       })
       break;
+    case 'chart not found':
+      res.status(400).json({
+        error: 'Chart not found'
+      })
+
+      break;
     case 'Not Authentication':
       res.status(401).json({
         error: 'You dont have token'

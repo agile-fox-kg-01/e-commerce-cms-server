@@ -20,40 +20,51 @@ class ControllerChart {
     try {
       const exist = await Cart.findOne({
         where: {
-          ProductId: newCart.ProductId
+          ProductId: newCart.ProductId,
+          UserId: newCart.UserId
         },
         include: Product
       })
-      // console.log(exist.Product.stock)
+      console.log('---->Checkpoint1')
+      console.log(exist)
 
       if (exist) {
-        // console.log(exist.quantity)
+        console.log(exist)
         // console.log(typeof exist.quantity)
         // console.log(newCart.quantity)
         // console.log(typeof newCart.quantity)
         const newQuantity = exist.quantity + newCart.quantity
-        // console.log(newQuantity)
-        // console.log(Number(Product.dataValues.stock))
+        console.log('---->Checkpoint2')
+        console.log(newQuantity)
         if (newQuantity > exist.Product.stock) {
+          console.log(exist.Product.stock)
+          console.log('---->Checkpoint3')
           throw { name: 'Stock kurang'}
+        } else {
+          const cart = await Cart.update({ quantity: newQuantity }, {
+            where: {
+              ProductId: newCart.ProductId
+            }
+          })
+          res.status(200).json({
+            message: 'Berhasil ditambahkan'
+          })
         }
 
-        const cart = await Cart.update({ quantity: newQuantity }, {
-          where: {
-            ProductId: newCart.ProductId
-          }
-        })
-        res.status(200).json({
-          message: 'Berhasil ditambahkan'
-        })
       } else {
-        const chart = await Cart.create(newCart)
-        res.status(201).json(chart)
+        console.log("Checkpoin 4")
+
+        try {
+          const chart = await Cart.create(newCart)
+          res.status(201).json(chart)
+        } catch (err) {
+          console.log(err)
+        }
       }
 
       
     } catch (err) {
-      // console.log(err.name)
+      console.log(err.name)
       res.status(500).json({
         eror: err.name
       })
@@ -83,6 +94,27 @@ class ControllerChart {
         charts
       })
     } catch (err) {
+      console.log(err)
+    }
+  }
+  static async deleteChart(req, res, next) {
+    try {
+      console.log('1 masih')
+      const chart = await Cart.destroy({
+        where: {
+          UserId: req.userLogin.id,
+          ProductId: req.body.ProductId
+        }
+      })
+      if (chart) {
+        res.status(200).json({
+          message: "Succes delete"
+        })
+      } else {
+        throw ({ name: "chart not found"})
+      }
+    } catch (err) {
+      next(err)
       console.log(err)
     }
   }
