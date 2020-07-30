@@ -11,6 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Product.belongsTo(models.Category);
+      Product.hasMany(models.CartProduct);
+      Product.belongsToMany(models.Cart, {
+        through: models.CartProduct
+      });
+      Product.hasMany(models.TransactionDetail);
+      Product.belongsToMany(models.Transaction, {
+        through: models.TransactionDetail
+      });
     }
   };
   Product.init({
@@ -59,6 +68,15 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: {
           args: true,
           msg: `Stock is required`
+        }
+      }
+    },
+    CategoryId: {
+      type: DataTypes.INTEGER,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: `Product's category is required`
         }
       }
     }

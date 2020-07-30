@@ -1,7 +1,5 @@
 'use strict';
 
-const { hashPassword } = require("../helpers/bcryptjs");
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     /**
@@ -13,19 +11,20 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
+    let data = [
+      {
+        name: 'Electronic'
+      }
+    ];
 
-      const data = [
-        {
-          name: 'Admin',
-          email: 'testadmin@admin.com',
-          password: hashPassword('12345'),
-          AccessGroupId: 1,
-          createdAt: new Date(),
-          updatedAt: new Date()
-        }
-      ]
+    data = data.map((element) => {
+      element.createdAt = new Date();
+      element.updatedAt = new Date();
 
-      await queryInterface.bulkInsert('Users', data, {});
+      return element;
+    });
+
+    await queryInterface.bulkInsert('Categories', data, {});
   },
 
   down: async (queryInterface, Sequelize) => {
@@ -35,6 +34,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-      await queryInterface.bulkDelete('Users', null);
+    await queryInterface.bulkDelete('Categories', null);
   }
 };

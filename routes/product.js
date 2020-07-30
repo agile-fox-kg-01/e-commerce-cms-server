@@ -4,7 +4,7 @@ const { authentication, authorization, admin } = require('../middlewares/auth');
 
 const router = express();
 
-router.get('/', authentication, productController.getProductRootHandler);
+router.get('/', productController.getProductRootHandler);
 router.post('/', authentication, admin, productController.postProductRootHandler);
 router.get('/:id', authentication, admin, productController.getProductByIdHandler);
 router.put('/:id', authentication, admin, productController.putProductByIdHandler);

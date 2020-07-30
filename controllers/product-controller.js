@@ -16,12 +16,12 @@ class ProductController {
             name: req.body.name,
             imageURL: req.body.imageURL,
             price: Number(req.body.price) === 0 ? '' : Number(req.body.price),
-            stock: Number(req.body.stock) === 0 ? '' : req.body.stock
+            stock: Number(req.body.stock) === 0 ? '' : Number(req.body.stock),
+            CategoryId: req.body.categoryId
         }
 
         try {
             const newProduct = await Product.create(objProduct);
-
             res.status(201).json(newProduct);
         } catch (error) {
             next(error);
@@ -53,7 +53,8 @@ class ProductController {
             name: req.body.name,
             imageURL: req.body.imageURL,
             price: req.body.price,
-            stock: req.body.stock
+            stock: req.body.stock,
+            CategoryId: req.body.categoryId
         }
 
         try {

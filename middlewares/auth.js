@@ -1,4 +1,4 @@
-const { AccessGroup, Product, User } = require('../models/index');
+const { AccessGroup, Cart, Product, User } = require('../models/index');
 const { verifyToken } = require('../helpers/jwt');
 
 const authentication = async (req, res, next) => {
@@ -47,6 +47,35 @@ const admin = (req, res, next) => {
     }
 }
 
+const cartAuthorization = async (req, res, next) => {
+    if(req.loggedInUser.AccessGroup.name !== 'User') {
+        next({
+            name: '403 Forbidden',
+            errors: {message: `You don't have permission to access`}
+        });
+    } else {
+        const userId = req.loggedInUser.id
+        try {
+            const cart = await Cart.findOne({
+                where: {
+                    UserId: userId
+                }
+            });
+
+            if(!cart) {
+                next({
+                    name: '403 Forbidden',
+                    errors: {message: `You don't have permission to access`}
+                });     
+            } else {
+                next();
+            }
+        } catch (error) {
+            next(error);
+        }
+    }
+}
+
 // This function currently unused
 const authorization = async (req, res, next) => {
     const productId = Number(req.params.id);
@@ -74,4 +103,4 @@ const authorization = async (req, res, next) => {
     }
 }
 
-module.exports = {authentication, authorization, admin};
+module.exports = {authentication, authorization, admin, cartAuthorization};

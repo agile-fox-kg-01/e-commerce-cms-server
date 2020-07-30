@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const { hashPassword } = require('../helpers/bcryptjs');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -12,6 +13,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       User.belongsTo(models.AccessGroup);
+      User.hasOne(models.Cart);
+      User.hasMany(models.Transaction);
     }
   };
   User.init({
@@ -50,6 +53,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     }
   }, {
+    hooks: {
+      beforeCreate: (user) => {
+        user.password = hashPassword(user.password);
+        user.AccessGroupId = 2;
+      }
+    },
     sequelize,
     modelName: 'User',
   });

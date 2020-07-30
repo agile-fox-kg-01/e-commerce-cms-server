@@ -1,10 +1,9 @@
-const { User } = require('../models/index');
+const { Cart, User } = require('../models/index');
 const { comparePassword } = require('../helpers/bcryptjs');
 const { signToken } = require('../helpers/jwt');
 
-
 class UserController {
-    static async postUserRootHandler(req, res, next) {
+    static async postUserLoginHandler(req, res, next) {
         const email = req.body.email;
         const password = req.body.password;
         try {
@@ -38,7 +37,34 @@ class UserController {
                 });
             }
         } catch (error) {
-            
+            next(error);
+        }
+    }
+
+    static async postUserRegisterHandler(req, res, next) {
+        const newUser = {
+            name: req.body.name,
+            email: req.body.email,
+            password: req.body.password
+        }
+        
+        try {
+            const user = await User.create(newUser);
+
+            const userCart = {
+                UserId: user.id
+            };
+            const cart = await Cart.create(userCart);
+
+            res.status(201).json({
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                createdAt: user.createdAt,
+                updatedAt: user.updatedAt
+            });
+        } catch (error) {
+            next(error);
         }
     }
 }
