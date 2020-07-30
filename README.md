@@ -73,7 +73,7 @@
         ```
 
 ----
-  **Login**
+  **Register**
 ----
   Register as an user in E-Commerce app
 
@@ -342,6 +342,7 @@
   | imageURL | <PRODUCT_IMAGEURL> | true |
   | price | <PRODUCT_PRICE> | true |
   | stock | <PRODUCT_STOCK> | true |
+  | CategoryId | <PRODUCT_CATEGORYID> | true |
 
 * **Success Response:**
 
@@ -639,6 +640,7 @@
   | imageURL | <PRODUCT_IMAGEURL> | true |
   | price | <PRODUCT_PRICE> | true |
   | stock | <PRODUCT_STOCK> | true |
+  | CategoryId | <PRODUCT_CATEGORYID> | true |
 
 * **Success Response:**
 
@@ -652,6 +654,7 @@
         "imageURL": "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//100/MTA-7473574/apple_apple_macbook_pro_mxk32_space_grey_-13_inch-_intel_iris_plus_graphics-_2-0ghz_intel_core_i5-_16gb_ram-_512gb_ssd-_macos-_full03_j8bompaz.jpg?output-format=webp",
         "price": 10000000,
         "stock": 2,
+        "CategoryId": 2,
         "createdAt": "2020-07-25T10:33:18.618Z",
         "updatedAt": "2020-07-25T10:48:04.612Z"
     }
@@ -782,6 +785,7 @@
         "imageURL": "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//100/MTA-7473574/apple_apple_macbook_pro_mxk32_space_grey_-13_inch-_intel_iris_plus_graphics-_2-0ghz_intel_core_i5-_16gb_ram-_512gb_ssd-_macos-_full03_j8bompaz.jpg?output-format=webp",
         "price": 10000000,
         "stock": 2,
+        "CategoryId": 2,
         "createdAt": "2020-07-25T10:33:18.618Z",
         "updatedAt": "2020-07-25T10:48:04.612Z"
     }
