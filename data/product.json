@@ -1,0 +1,32 @@
+[
+    {
+        "name": "White Shirt",
+        "image_url": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80",
+        "price": 150000,
+        "stock": 10
+    },
+    {
+        "name": "Basketball",
+        "image_url": "https://images.unsplash.com/photo-1519861531473-9200262188bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80",
+        "price": 350000,
+        "stock": 10
+    },
+    {
+        "name": "Nike Sneaker",
+        "image_url": "https://images.unsplash.com/photo-1577983156459-59be31b0d11c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=712&q=80",
+        "price": 7000000,
+        "stock": 3
+    },
+    {
+        "name": "Badminton Racket",
+        "image_url": "https://images.unsplash.com/photo-1564227050211-b6061acd4158?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
+        "price": 450000,
+        "stock": 10
+    },
+    {
+        "name": "Macbook",
+        "image_url": "https://images.unsplash.com/photo-1550520920-27ba45c38740?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
+        "price": 13000000,
+        "stock": 10
+    }
+]
