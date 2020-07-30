@@ -2,7 +2,7 @@
 
 Deploy Here:
 
-[Ecommerce/CMS-Server](https://ecommerce-cms-fd3f9.web.app/login)
+[Ecommerce/CMS-Server](https://ecommerce-cms-admin.web.app/login)
 
 ## API Documentation
 
