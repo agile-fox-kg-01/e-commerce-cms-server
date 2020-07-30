@@ -1,6 +1,7 @@
 const { User } = require('../models/index')
 const { comparePassword } = require('../helpers/bcrypt')
 const { signToken } = require('../helpers/jwt')
+const { use } = require('../routes/userRouter')
 
 class ControllerUser {
   static async postUsersLogin(req, res, next) {
@@ -29,6 +30,34 @@ class ControllerUser {
     } catch (err) {
       console.log(err.name)
       next(err)
+    }
+  }
+  static async postUsersRegister(req, res, next) {
+    try {
+      console.log(req.body)
+      const { email, password } = req.body
+      
+      const userExist = await User.findOne({
+        where: { email }
+      })
+
+      if ( userExist ) {
+        throw { name: 'User Sudah terdaftar' }
+      } else {
+        console.log('Tidak ada user')
+        const registerUser = await User.create({
+          email,
+          password
+        })
+
+        res.status(201).json({
+          message: `Succes Register User ${registerUser.email} `
+        })
+      }
+
+    } catch (err) {
+      console.log(err)
+      res.status(500).json(err)
     }
   }
 }

@@ -44,6 +44,9 @@ async function isAdmin(req, res, next) {
 
 
 }
+// async function isOwner(req, res, next) {
+  
+// }
 
 module.exports = {
   authentication,
