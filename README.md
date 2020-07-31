@@ -12,15 +12,19 @@
   login existed user
 
 * **URL**
-  login
+
+  /login
 
 * **Method:**
+
   `POST`
 
 * **Request Headers**
+
   None
 
 * **URL Params**
+
   None
 
 * **Data Params**
@@ -32,11 +36,13 @@
 
 * **Success Response:**
 
-  * **Code:**200 OK <br />
+  * **Code:** 200 OK <br />
     **Content:**
     ```json
     {
-        "token": "user-token"
+        "token": "user-token",
+        "email": "user-email",
+        "role": "user-role"
     }
     ```
 
@@ -59,15 +65,19 @@
   register new User and send message to email address
 
 * **URL**
+
   /register
 
 * **Method:**
+
   `POST`
 
 * **Request Headers**
+
   None
 
 * **URL Params**
+
   None
 
 * **Data Params**
@@ -80,11 +90,11 @@
 
 * **Success Response:**
 
-  * **Code:**201 CREATED <br />
+  * **Code:** 201 CREATED <br />
     **Content:**
     ```json
     {
-        "token": "user_token"
+        "email": "user_email"
     }
     ```
 
@@ -107,9 +117,11 @@
   SignIn with google email or if user not exist automatically register and send message to email address
 
 * **URL**
+
   /login/google
 
 * **Method:**
+
   `POST`
 
 * **Request Headers**
@@ -118,22 +130,25 @@
   | Token | <GOOGLE_TOKEN> | true |
 
 * **URL Params**
+
   None
 
 * **Data Params**
+
   None
 
 * **Success Response:**
-  * **Code:**200 OK <br />
+  * **Code:** 200 OK <br />
     **Content:**
     ```json
     {
-        "token": "user_token"
+        "token": "user_token",
+        "email": "user_email"
     }
     ```
     OR
 
-  * **Code:**201 CREATED <br />
+  * **Code:** 201 CREATED <br />
     **Content:**
     ```json
     {
@@ -155,9 +170,11 @@
   see all the admin products
 
 * **URL**
+
   /products
 
 * **Method:**
+
   `GET`
 
 * **Request Headers**
@@ -166,14 +183,16 @@
   | Token | <USER_TOKEN> | true |
 
 * **URL Params**
+
   None
 
 * **Data Params**
+
   None
 
 * **Success Response:**
 
-  * **Code:**200 OK <br />
+  * **Code:** 200 OK <br />
     **Content:**
     ```json
     [
@@ -211,33 +230,35 @@
         { "error" : "Internal Server Error" }
         ```
 ----
-  **Read one task**
+  **Read one Product**
 ----
   see one the admin product
 
 * **URL**
+
   /products/:id
 
 * **Method:**
+
   `GET`
 
 * **Request Headers**
   | key | value | required |
   | :---: | :---: | :---: |
-  | Token | <USER_TOKEN> | true |
+  | token | <USER_TOKEN> | true |
 
 * **URL Params**
-
   | key | value | required |
   | :---: | :---: | :---: |
-  | id | <TASK_ID> | true |
+  | id | <PRODUCT_ID> | true |
 
 * **Data Params**
+
   None
 
 * **Success Response:**
 
-  * **Code:**200 OK <br />
+  * **Code:** 200 OK <br />
     **Content:**
     ```json
     {
@@ -275,14 +296,16 @@
         { "error" : "Internal Server Error" }
         ```
 ----
-  **Add a Task**
+  **Add a Product**
 ----
-  Create a new task
+  Create a new product
 
 * **URL**
+
   /task/add
 
 * **Method:**
+
   `POST`
 
 * **Request Headers**
@@ -291,6 +314,7 @@
   | Token | <USER_TOKEN> | true |
 
 * **URL Params**
+
   None
 
 * **Data Params**
@@ -304,7 +328,7 @@
 
 * **Success Response:**
 
-  * **Code:**201 CREATED <br />
+  * **Code:** 201 CREATED <br />
     **Content:**
     ```json
     {
@@ -336,29 +360,29 @@
         { "error" : "Internal Server Error" }
         ```
 ----
-  **Edit a Task**
+  **Edit a Product**
 ----
   Edit a admin's product
 
 * **URL**
+
   /products/edit/:id'
 
 * **Method:**
+
   `PUT`
 
 * **Request Headers**
   | key | value | required |
   | :---: | :---: | :---: |
-  | Token | <USER_TOKEN> | true |
+  | token | <USER_TOKEN> | true |
 
 * **URL Params**
-
   | key | value | required |
   | :---: | :---: | :---: |
   | id | <Product_id> | true |
 
 * **Data Params**
-
   | key | value | required |
   | :---: | :---: | :---: |
   | name | <Product_Name> | true |
@@ -368,7 +392,7 @@
 
 * **Success Response:**
 
-  * **Code:**201 CREATED <br />
+  * **Code:** 201 CREATED <br />
     **Content:**
     ```json
     {
@@ -417,9 +441,11 @@
   Delete a admin's Product
 
   * **URL**
+
   /products/delete/:id
 
 * **Method:**
+
   `DELETE`
 
 * **Request Headers**
@@ -428,17 +454,17 @@
   | Token | <USER_TOKEN> | true |
 
 * **URL Params**
-
   | key | value | required |
   | :---: | :---: | :---: |
-  | id | <Productid> | true |
+  | id | <PRODUCT_ID> | true |
 
 * **Data Params**
+
   None
 
 * **Success Response:**
 
-  * **Code:**200 OK <br />
+  * **Code:** 200 OK <br />
     **Content:**
     ```json
     {
