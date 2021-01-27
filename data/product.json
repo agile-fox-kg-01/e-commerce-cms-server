@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Toy harley FAT BOY 114",
+    "image_url": "https://testride.harley-davidson.asia/assets/img/bikes/MY20/FLFBS.png",
+    "price": 10000000,
+    "stock": 4
+  },
+  {
+    "name": "Toy harley FAT BOB 114",
+    "image_url": "https://testride.harley-davidson.asia/assets/img/bikes/MY20/FXFBS.png",
+    "price": 10000000,
+    "stock": 4
+  },
+  {
+    "name": "Toy harley STREET BOB",
+    "image_url": "https://testride.harley-davidson.asia/assets/img/bikes/MY18/AEM/SOFTAIL/Street-bob.png",
+    "price": 10000000,
+    "stock": 2
+  },
+  {
+    "name": "Toy harley STREET FXDR 114",
+    "image_url": "https://testride.harley-davidson.asia/assets/img/bikes/MY20/FXDRS.png",
+    "price": 10000000,
+    "stock": 2
+  },
+  {
+    "name": "Toy harley TOURING BREAKOUT 114",
+    "image_url": "https://testride.harley-davidson.asia/assets/img/bikes/MY18/AEM/SOFTAIL/Street-bob.png",
+    "price": 10000000,
+    "stock": 2
+  }
+]
